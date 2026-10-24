@@ -136,6 +136,11 @@ python -m mcp_server_git
 
 `--repository` (`-r`) accepts any path inside a Git working tree. At startup the server walks up to the enclosing repository root, the way `git rev-parse --show-toplevel` does, so `--repository .` works when a shared config is launched from any subdirectory of the repository. A path inside the repository therefore allows tool calls anywhere in that repository, not only under the subdirectory given. A path that does not exist, or is not inside a Git repository, is logged as a one-line error at startup.
 
+> [!WARNING]
+> Without `--repository`, the server enforces no repository confinement: **every Git repository reachable on the filesystem under the running user's permissions is in scope**. Any tool call can operate on any repository by passing its path to `repo_path`.
+>
+> To confine the server to a specific repository, launch with `--repository <path>` (or `-r <path>`). When configured, tool calls attempting to access paths outside the specified repository are rejected with an error.
+
 ### Usage with Claude Desktop
 
 Add this to your `claude_desktop_config.json`:

@@ -349,7 +349,11 @@ def git_show(repo: git.Repo, revision: str) -> str:
 
 
 def validate_repo_path(repo_path: Path, allowed_repository: Path | None) -> None:
-    """Validate that repo_path is within the allowed repository path."""
+    """Validate that repo_path is within the allowed repository path.
+
+    When allowed_repository is None, no restriction is configured and any
+    reachable repository on the filesystem is permitted.
+    """
     if allowed_repository is None:
         return  # No restriction configured
 

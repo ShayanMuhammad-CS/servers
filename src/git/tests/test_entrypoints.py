@@ -172,6 +172,7 @@ def test_main_help():
     assert result.exit_code == 0
     assert "MCP Git Server - Git functionality for MCP" in result.output
     assert "-r, --repository PATH" in result.output
+    assert "confine operations to" in result.output
     assert "-v, --verbose" in result.output
 
 

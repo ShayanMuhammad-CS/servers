@@ -6,7 +6,12 @@ from .server import serve
 
 
 @click.command()
-@click.option("--repository", "-r", type=Path, help="Git repository path")
+@click.option(
+    "--repository",
+    "-r",
+    type=Path,
+    help="Git repository path to confine operations to. Without this option, every reachable repository is in scope.",
+)
 @click.option("-v", "--verbose", count=True)
 def main(repository: Path | None, verbose: bool) -> None:
     """MCP Git Server - Git functionality for MCP"""
